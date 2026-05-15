@@ -1,0 +1,8 @@
+# SSMS
+*.suo
+*.user
+.vs/
+
+# Windows
+Thumbs.db
+desktop.ini
