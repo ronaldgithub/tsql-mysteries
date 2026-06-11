@@ -1,0 +1,31 @@
+CREATE OR ALTER PROCEDURE dbo.Hammer_CPU_Cursor_Temp
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    CREATE TABLE #t (Txt NVARCHAR(MAX));
+
+    DECLARE @txt NVARCHAR(MAX);
+
+    DECLARE cur CURSOR LOCAL FAST_FORWARD FOR
+        SELECT TOP 1000 Text
+        FROM dbo.Comments
+        ORDER BY NEWID();
+
+    OPEN cur;
+    FETCH NEXT FROM cur INTO @txt;
+
+    WHILE @@FETCH_STATUS = 0
+    BEGIN
+        INSERT INTO #t VALUES (@txt);
+        FETCH NEXT FROM cur INTO @txt;
+    END
+
+    CLOSE cur;
+    DEALLOCATE cur;
+
+    SELECT TOP 1000 HASHBYTES('SHA2_256', Txt)
+    FROM #t
+    ORDER BY NEWID();
+END
+GO

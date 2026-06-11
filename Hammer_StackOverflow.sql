@@ -93,8 +93,8 @@ BEGIN
     IF @q = 34 INSERT INTO dbo.Votes (PostId, VoteTypeId, CreationDate, UserId)
                VALUES (ABS(CHECKSUM(NEWID())) % 20000000, 2, GETDATE(), 1);
 
-    IF @q = 35 INSERT INTO dbo.Posts (PostTypeId, OwnerUserId, CreationDate, Score, ViewCount, Title, Body)
-               VALUES (1, 1, GETDATE(), 0, 0, 'Test title', 'Test body');
+    IF @q = 35 INSERT INTO dbo.Posts (PostTypeId, OwnerUserId, CreationDate, LastActivityDate, Score, ViewCount, Title, Body)
+                VALUES (1, 1, GETDATE(), GETDATE(), 0, 0, 'Test title', 'Test body');
 
     IF @q = 36 INSERT INTO dbo.Users (DisplayName, Reputation, CreationDate)
                VALUES ('TestUser', 1, GETDATE());
