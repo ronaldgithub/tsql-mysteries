@@ -44,11 +44,11 @@ BEGIN
     --------------------------------------------------------------------
     IF @q = 1
     BEGIN
-        DECLARE @Cat int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
+        DECLARE @Cat0 int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
 
         SELECT *
         FROM dbo.Sniff
-        WHERE Category = @Cat;
+        WHERE Category = @Cat0;
     END
 
     --------------------------------------------------------------------
@@ -56,11 +56,11 @@ BEGIN
     --------------------------------------------------------------------
     IF @q = 2
     BEGIN
-        DECLARE @Cat int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
+        DECLARE @Cat2 int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
 
         SELECT *
         FROM dbo.SniffMem
-        WHERE Category = @Cat
+        WHERE Category = @Cat2
         ORDER BY Payload;
     END
 
@@ -83,8 +83,8 @@ BEGIN
     --------------------------------------------------------------------
     IF @q = 4
     BEGIN
-        DECLARE @Cat int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
-        DECLARE @Local int = @Cat;  -- breaks sniffing
+        DECLARE @Cat4 int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
+        DECLARE @Local int = @Cat4;  -- breaks sniffing
 
         SELECT *
         FROM dbo.Sniff
@@ -96,11 +96,11 @@ BEGIN
     --------------------------------------------------------------------
     IF @q = 5
     BEGIN
-        DECLARE @Cat int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
+        DECLARE @Cat5 int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
 
         SELECT *
         FROM dbo.Sniff
-        WHERE Category = @Cat
+        WHERE Category = @Cat5
         OPTION (RECOMPILE);
     END
 
@@ -109,11 +109,11 @@ BEGIN
     --------------------------------------------------------------------
     IF @q = 6
     BEGIN
-        DECLARE @Cat int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
+        DECLARE @Cat6 int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
 
         SELECT *
         FROM dbo.Sniff
-        WHERE Category = @Cat
+        WHERE Category = @Cat6
         OPTION (OPTIMIZE FOR UNKNOWN);
     END
 
@@ -122,11 +122,11 @@ BEGIN
     --------------------------------------------------------------------
     IF @q = 7
     BEGIN
-        DECLARE @Cat int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
+        DECLARE @Cat7 int = CASE WHEN RAND() < 0.5 THEN 1 ELSE 2 END;
 
         SELECT *
         FROM dbo.Sniff
-        WHERE Category = @Cat
+        WHERE Category = @Cat7
         OPTION (USE HINT('FORCE_LEGACY_CARDINALITY_ESTIMATION'));
     END
 
@@ -135,7 +135,7 @@ BEGIN
     --------------------------------------------------------------------
     IF @q = 8
     BEGIN
-        DECLARE @Score int = CASE WHEN RAND() < 0.5 THEN 0 ELSE 100 END;
+        DECLARE @Score8 int = CASE WHEN RAND() < 0.5 THEN 0 ELSE 100 END;
 
         SELECT TOP 500
             p.Id,
@@ -144,7 +144,7 @@ BEGIN
             u.DisplayName
         FROM dbo.Posts p
         JOIN dbo.Users u ON u.Id = p.OwnerUserId
-        WHERE p.Score = @Score;
+        WHERE p.Score = @Score8;
     END
 END
 GO
