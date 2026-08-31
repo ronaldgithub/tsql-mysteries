@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\github\\tsql-mysteries\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\github\\tsql-mysteries\\PartitioningHugeTableQuickly.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PartitioningHugeTableQuickly.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +31,18 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PartitioningHugeTableQuickly.sql - win10.test (WIN10\\ronald (75))",
+              "DocumentMoniker": "C:\\github\\tsql-mysteries\\PartitioningHugeTableQuickly.sql",
+              "RelativeDocumentMoniker": "PartitioningHugeTableQuickly.sql",
+              "ToolTip": "C:\\github\\tsql-mysteries\\PartitioningHugeTableQuickly.sql - win10.test (WIN10\\ronald (75))*",
+              "RelativeToolTip": "PartitioningHugeTableQuickly.sql - win10.test (WIN10\\ronald (75))*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-08-06T12:30:33.977Z",
+              "EditorCaption": " - win10.test (WIN10\\ronald (75))"
             },
             {
               "$type": "Bookmark",
