@@ -1,5 +1,24 @@
 /*==============================================================================
     BlockWatch - capture the blocked process report to a DBA table via Agent
+
+    Author:   Ronald.de.Groot@OpenData.nl
+    Source:   https://github.com/ronaldgithub/tsql-mysteries/blob/main/BlockWatch_sp_HumanEvents_setup.sql
+    License:  MIT
+
+    Drafted with the help of Claude Code (Anthropic), thanks Claude, I am such a bad keyboard typer!(?)
+
+    Section 8 calls sp_HumanEventsBlockViewer from Erik Darling's DarlingData
+    toolkit - https://github.com/erikdarlingdata/DarlingData (MIT licensed).
+    Used url: https://github.com/erikdarlingdata/DarlingData/tree/main/sp_HumanEvents
+    That procedure is a separate install and is NOT included here; grab it via
+    his Install-All script so you get updates.
+
+    Tested on: SQL Server 2025
+==============================================================================*/
+
+
+/*==============================================================================
+    BlockWatch - capture the blocked process report to a DBA table via Agent
     ---------------------------------------------------------------------------
     Consistent naming used throughout:
 
@@ -11,7 +30,8 @@
         DBA.dbo.BlockWatch_Demo ..... throwaway table used only for the test
         "DBA - BlockWatch Collect" .. the SQL Server Agent job
 
-    Run sections 1-5 once, in order. Section 6 is a manual two-window test.
+    Run sections 1-5 once, in order
+    Section 6 is a manual two-window test.
     Sections 7-9 are verification, analysis, and cleanup.
 ==============================================================================*/
 
@@ -161,11 +181,11 @@ EXEC msdb.dbo.sp_add_jobstep
 
 EXEC msdb.dbo.sp_add_jobschedule
     @job_name             = N'DBA - BlockWatch Collect',
-    @name                 = N'Every 5 minutes',
+    @name                 = N'Every 1 minutes',
     @freq_type            = 4,   /* daily   */
     @freq_interval        = 1,
     @freq_subday_type     = 4,   /* minutes */
-    @freq_subday_interval = 5;
+    @freq_subday_interval = 1;
 
 EXEC msdb.dbo.sp_add_jobserver
     @job_name = N'DBA - BlockWatch Collect';
