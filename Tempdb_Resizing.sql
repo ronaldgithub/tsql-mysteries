@@ -1,5 +1,4 @@
 /* 
-1. Pick a quiet window
 Shrink only works if the space is actually free. Open transactions, running sorts/hashes, version store, 
 and temp objects all pin space. Check what's using it first:
 */
@@ -10,7 +9,7 @@ SELECT
     SUM(unallocated_extent_page_count)       * 8 / 1024 AS free_mb
 FROM tempdb.sys.dm_db_file_space_usage;
 
--- Active Transactions
+-- Any active Transactions
 SELECT
     name,
     size/128.0 AS SizeMB,
@@ -30,7 +29,6 @@ ORDER BY elapsed_time_seconds DESC;
 DBCC OPENTRAN;
 
 -- Flush the caches that hold tempdb pages
-
 DBCC FREEPROCCACHE;      -- drops cached plans
 DBCC DROPCLEANBUFFERS;   -- drops clean buffer pages
 DBCC FREESYSTEMCACHE ('ALL');   -- releases cache entries, incl. temp table cache
@@ -81,7 +79,7 @@ END
 CLOSE file_cur;
 DEALLOCATE file_cur;
 
-
+-- Results something like this 
 USE tempdb;
 GO
 DBCC SHRINKFILE (tempdev, 8192);   -- target size in MB, per data file
@@ -89,7 +87,6 @@ DBCC SHRINKFILE (templog, 1024);
 
 
 /* Dynamic */
-
 USE master;
 GO
 
@@ -132,14 +129,9 @@ END
 CLOSE file_cur;
 DEALLOCATE file_cur;
 
-
-
-
+-- Something like this
 ALTER DATABASE tempdb MODIFY FILE (NAME = tempdev,  SIZE = 8192MB, FILEGROWTH = 512MB);
 ALTER DATABASE tempdb MODIFY FILE (NAME = templog,  SIZE = 1024MB, FILEGROWTH = 256MB);
--- repeat for every tempdb data file; keep all data files equal in size and growth
-
-
 
 -- Welke databases gebruiken snapshot of RCSI
 SELECT
@@ -149,4 +141,3 @@ SELECT
 FROM sys.databases
 WHERE snapshot_isolation_state <> 0
    OR is_read_committed_snapshot_on = 1;
-
